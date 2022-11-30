@@ -16,7 +16,6 @@ import com.example.spisok.DBHelper.Companion.KEY_TELE
 
 class MainActivity : AppCompatActivity() {
     var number = ""
-    //val filtrlist = mutableListOf<String>()
     val list = mutableListOf<Todo>()
     private val dbHelper = DBHelper(this)
 
@@ -51,18 +50,15 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val number = findViewById<EditText>(R.id.number)
-        //val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         number.addTextChangedListener(object : TextWatcher {
-            // после того, как текст редактировали
             override fun afterTextChanged(s: Editable) {
 
-                num = s.toString() // новая строка!
+                num = s.toString()
             }
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
 
-            // во время ввода, изменение строки уже произошло
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
             }
@@ -74,30 +70,14 @@ class MainActivity : AppCompatActivity() {
         buttonAdd.setOnClickListener {
             val s = number.text.toString()
             val id = dbHelper.add(num,"0","0","0")
-            //list.add(Todo(id, s))
             adapter.notifyItemInserted(list.lastIndex)
             number.text.clear()
-            // filtration()
         }
-        // radioGroup.setOnCheckedChangeListener { radioGroup, i ->
-        //    filter = i
-        // filtration()
+
         adapter.notifyDataSetChanged()
     }
 }
 
-//    fun filtration() {
-//        filtrlist.clear()
-//        if (filter == R.id.radioButton) {
-//            filtrlist.addAll(list)
-//        } else if (filter == R.id.radioButtonPlus) {
-//            filtrlist.addAll(list.filter { it > 0 })
-//        } else if (filter == R.id.radioButtonMinus) {
-//            filtrlist.addAll(list.filter { it < 0 })
-//        }
-//   }
 
-
-//}
 
 
